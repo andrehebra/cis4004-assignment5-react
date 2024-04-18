@@ -1,5 +1,5 @@
 import React from 'react';
-//import './ConnectFour.css';
+import './ConnectFour.css';
 
 class ConnectFour extends React.Component {
     constructor(props) {
@@ -18,10 +18,10 @@ class ConnectFour extends React.Component {
         }
     }
 
-    fillbox(e) {
+    fillBox(e) {
         const colValue = parseInt(e.target.getAttribute('data-value'));
 
-        this.setPiect(5, colValue);
+        this.setPiece(5, colValue);
 
         this.setState((prevState) => ({
             currentPlayer: prevState.currentPlayer === 1 ? 2 : 1
@@ -30,21 +30,25 @@ class ConnectFour extends React.Component {
     }
 
     setPiece(startCount, colValue) {
-        let initialMatrix = this.state.initialMatrix;
+        let newMatrix = this.state.initialMatrix;
 
         const rows = document.querySelectorAll(".grid-row");
 
         try {
-            if (initialMatrix[startCount][colValue] !== 0) {
+            if (newMatrix[startCount][colValue] !== 0) {
                 startCount--;
                 this.setPiece(startCount, colValue);
             } else {
                 const currentRow = Array.from(rows)[startCount].querySelectorAll(".grid-box");
                 currentRow[colValue].classList.add("filled");
-                currentRow[colValue].classList.add("player${`this.state.currentPlayer}`");
-                initialMatrix[startCount][colValue] = this.state.currentPlayer;
+                currentRow[colValue].classList.add("player" + this.state.currentPlayer);
+                newMatrix[startCount][colValue] = this.state.currentPlayer;
 
-                if (this.winCheck) {
+                this.setState(() => ({
+                    initialMatrix: newMatrix
+                }))
+
+                if (this.winCheck() === true) {
                     alert("Player " + this.state.currentPlayer + " wins!");
                     return true;
                 }
@@ -183,7 +187,72 @@ class ConnectFour extends React.Component {
     render() {
         return (
             <div class="wrapper">
-                <div class="container"></div>
+                <div class="container">
+                <div class="grid-row">
+                        <div class="grid-box" data-value="0" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="1" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="2" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="3" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="4" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="5" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="6" onClick={(e) => this.fillBox(e)}></div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-box" data-value="0" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="1" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="2" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="3" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="4" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="5" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="6" onClick={(e) => this.fillBox(e)}></div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-box" data-value="0" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="1" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="2" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="3" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="4" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="5" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="6" onClick={(e) => this.fillBox(e)}></div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-box" data-value="0" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="1" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="2" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="3" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="4" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="5" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="6" onClick={(e) => this.fillBox(e)}></div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-box" data-value="0" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="1" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="2" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="3" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="4" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="5" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="6" onClick={(e) => this.fillBox(e)}></div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-box" data-value="0" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="1" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="2" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="3" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="4" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="5" onClick={(e) => this.fillBox(e)}></div>
+                        <div class="grid-box" data-value="6" onClick={(e) => this.fillBox(e)}></div>
+                    </div>
+                </div>
+                <div id="information">
+                    <div class="player-wrappers">
+                        Player 1
+                        <div class="player1"></div>
+                    </div>
+                    <div class="player-wrappers">
+                        Player 2
+                        <div class="player2"></div>
+                    </div>
+                </div>
             </div>
         )
         
