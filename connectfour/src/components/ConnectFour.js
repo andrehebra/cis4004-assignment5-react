@@ -61,7 +61,7 @@ class ConnectFour extends React.Component {
     }
 
     winCheck() {
-        console.log("winCheck");
+        //console.log("winCheck");
 
         if (this.checkHorizontal() || this.checkVertical() || this.checkPositiveDiagonal() || this.checkNegativeDiagonal()) {
             return true;
