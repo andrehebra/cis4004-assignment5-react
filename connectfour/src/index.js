@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import {ConnectFour} from './components/ConnectFour'
+import ConnectFour from './components/ConnectFour'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
